@@ -5,7 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
-
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-side-tool',
   standalone: true,
@@ -14,7 +14,9 @@ import { RouterLink } from '@angular/router';
             MatButtonModule, 
             MatSidenavModule, 
             MatListModule, 
-            RouterLink],
+            RouterLink, 
+            RouterOutlet
+            ],
   templateUrl: './side-tool.component.html',
   styleUrl: './side-tool.component.css'
 })

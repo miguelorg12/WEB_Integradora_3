@@ -28,6 +28,7 @@
             </a>
         </div>
     </mat-drawer>
+    <mat-drawer-content>
     <mat-toolbar class="toolbar">
         <mat-toolbar-row>
             <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="drawer.toggle()">
@@ -41,5 +42,7 @@
                 <mat-icon class="text-white">exit_to_app</mat-icon>
             </button>
         </mat-toolbar-row>
-    </mat-toolbar>  
+    </mat-toolbar>
+    <ng-content></ng-content>
+    </mat-drawer-content>  
 </mat-drawer-container>
