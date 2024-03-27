@@ -6,6 +6,7 @@ import { CodeVerificacionComponent } from './Views/code-verificacion/code-verifi
 import { CheckEmailComponent } from './Views/check-email/check-email.component';
 import { HomeComponent } from './Views/home/home.component';
 import { WelcomeComponent } from './Views/welcome/welcome.component';
+import { IndexComponent } from './Views/Values/index/index.component';
 
 
 export const routes: Routes = [
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { path: 'code-verificacion', component: CodeVerificacionComponent },
     { path: 'check-email', component: CheckEmailComponent },
     { path: 'home', component: HomeComponent },
+    {path: 'values/index', component: IndexComponent},
     { path: '', component: WelcomeComponent},
     { path: '**', component: HomeComponent}
 ];

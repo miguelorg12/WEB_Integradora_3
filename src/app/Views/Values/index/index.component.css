@@ -1,0 +1,19 @@
+/* index.component.css */
+.sensor-item {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .incubadora-card {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  .bebe-card {
+    background-color: #d0d0d0;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
