@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class CodeVerificacionComponent {
 
+  moveFocus(event: KeyboardEvent, nextInput: HTMLInputElement) {
+    if ((event.target as HTMLInputElement).value.length === 1) {
+      nextInput.focus();
+    }
+  }
 }

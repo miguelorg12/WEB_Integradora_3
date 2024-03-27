@@ -1,0 +1,41 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img class="mx-auto h-32 w-auto" src="assets/logo.jpeg" alt="Your Company">
+      <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-violet-950">Inicie sesion en su cuenta</h2>
+    </div>
+  
+    <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6">
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Correo</label>
+          <div class="mt-2">
+            <input id="Correo" name="Correo" required class="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-purple-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+  
+        <div>
+            <div class="flex items-center justify-between">
+                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+                <div class="text-sm">
+                    <a [routerLink]="['/password-recovery']" class="font-semibold text-purple-500 hover:text-purple-600">Olvidaste la contraseña?</a>
+                </div>
+            </div>
+            <div class="mt-2 relative">
+                <input [type]="hide ? 'password' : 'text'" id="password" name="password" autocomplete="current-password" required class="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-purple-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" (click)="hide = !hide">
+                    <svg class="h-5 w-5" [ngClass]="{'hidden': !hide}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12c2.264 4.5 6.236 7.5 11.5 7.5s9.236-3 11.5-7.5-2.264-7.5-6.5-7.5-9.236 3-11.5 7.5z"></path></svg>
+                    <svg class="h-5 w-5" [ngClass]="{'hidden': hide}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12a2 2 0 014 0"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12c2.264 4.5 6.236 7.5 11.5 7.5s9.236-3 11.5-7.5-2.264-7.5-6.5-7.5-9.236 3-11.5 7.5z"></path></svg>
+                </div>
+            </div>
+        </div>
+  
+        <div>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-purple-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar Sesion</button>
+        </div>
+      </form>
+      <p class="mt-10 text-center text-sm text-gray-500">
+        No tienes cuenta?
+        <a [routerLink]="['/register']" class="font-semibold leading-6 text-purple-500 hover:text-purple-600">Registrate aqui</a>
+      </p>
+    </div>
+  </div>
