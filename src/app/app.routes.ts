@@ -9,7 +9,7 @@ import { WelcomeComponent } from './Views/welcome/welcome.component';
 
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
+    { path: 'login', loadComponent:() => import('./Views/login/login.component').then(m => m.LoginComponent)},
     { path: 'register', component: RegisterComponent },
     { path: 'password-recovery', component: PasswordRecoveryComponent },
     { path: 'code-verificacion', component: CodeVerificacionComponent },
