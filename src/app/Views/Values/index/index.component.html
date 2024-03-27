@@ -1,1 +1,33 @@
-<p>index works!</p>
+<!-- dashboard.component.html -->
+<div class="container">
+    <!-- Valores de Sensores -->
+    <h2>Valores de Sensores</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let value of values" class="sensor-item">
+        <h3 mat-line>Sensor ID: {{ value['sensor_id'] }}</h3>
+        <p mat-line>Valor: {{ value['sensor_value'] }}</p>
+      </mat-list-item>
+    </mat-list>
+  
+    <!-- Datos de la Incubadora -->
+    <h2>Datos de la Incubadora</h2>
+    <mat-card class="incubadora-card">
+      <mat-card-content>
+        <p>ID de la Incubadora: {{ displayedColumns[2] }}</p>
+        <p>Estado: {{ displayedColumns[1] === 'is_active' ? 'Activa' : 'Inactiva' }}</p>
+        <p>Ocupada: {{ displayedColumns[2] === 'is_occupied' ? 'Sí' : 'No' }}</p>
+        <p>Óptimo: {{ displayedColumns[3] === 'optimo' ? 'Sí' : 'No' }}</p>
+      </mat-card-content>
+    </mat-card>
+  
+    <!-- Datos del Bebé -->
+    <h2>Datos del Bebé</h2>
+    <mat-card class="bebe-card">
+      <mat-card-content>
+        <p>ID de la Incubadora: {{ displayedColumns[3] }}</p>
+        <p>Nombre: {{ values[0]['nombre'] }}</p>
+        <p>Apellido: {{ values[0]['apellido'] }}</p>
+        <p>Estado: {{ values[0]['id_estado'] }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
