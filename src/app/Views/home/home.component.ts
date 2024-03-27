@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-
+import { SideToolComponent } from '../../General/side-tool/side-tool.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [SideToolComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

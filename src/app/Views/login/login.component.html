@@ -9,7 +9,7 @@
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Correo</label>
           <div class="mt-2">
-            <input id="Correo" name="Correo" required class="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-purple-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input id="Correo" name="Correo" class="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-purple-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
           </div>
         </div>
   
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="mt-2 relative">
-                <input [type]="hide ? 'password' : 'text'" id="password" name="password" autocomplete="current-password" required class="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-purple-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input [type]="hide ? 'password' : 'text'" id="password" name="password" class="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-purple-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" (click)="hide = !hide">
                     <svg class="h-5 w-5" [ngClass]="{'hidden': !hide}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12c2.264 4.5 6.236 7.5 11.5 7.5s9.236-3 11.5-7.5-2.264-7.5-6.5-7.5-9.236 3-11.5 7.5z"></path></svg>
                     <svg class="h-5 w-5" [ngClass]="{'hidden': hide}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12a2 2 0 014 0"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12c2.264 4.5 6.236 7.5 11.5 7.5s9.236-3 11.5-7.5-2.264-7.5-6.5-7.5-9.236 3-11.5 7.5z"></path></svg>
@@ -30,7 +30,7 @@
         </div>
   
         <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-purple-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar Sesion</button>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-cyan-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar Sesion</button>
         </div>
       </form>
       <p class="mt-10 text-center text-sm text-gray-500">

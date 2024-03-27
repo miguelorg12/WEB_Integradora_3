@@ -1,1 +1,27 @@
-
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <h1 class="text-slate-100 font-semibold">Hola, [Nombre del usuario]</h1>
+        <mat-nav-list>
+            <a [routerLink]="['/usuarios']"  mat-list-item class="text-slate-100" href="#">Usuarios</a>
+            <a [routerLink]="['/hospitales']"  mat-list-item class="text-slate-100" href="#">Hospitales</a>
+            <a [routerLink]="['/incubadoras']"  mat-list-item class="text-slate-100" href="#">Incubadoras</a>
+            <a [routerLink]="['/bebes']"  mat-list-item class="text-slate-100" href="#">Bebes</a>
+            <a [routerLink]="['/sensores']"  mat-list-item class="text-slate-100" href="#">Bebes-Incubadoras</a>
+            <a [routerLink]="['/sensores']"  mat-list-item class="text-slate-100" href="#">Sensores</a>
+            <a [routerLink]="['/contactos']"  mat-list-item class="text-slate-100" href="#">Contactos</a>
+            <a [routerLink]="['/historiales']"  mat-list-item class="text-slate-100" href="#">Historiales Medicos</a>
+            <button class="text-red-700 font-extrabold mt-10" >Cerrar sesion</button>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-toolbar class="toolbar">
+        <mat-toolbar-row>
+            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="drawer.toggle()">
+                <mat-icon class="text-white">menu</mat-icon>
+            </button>
+            <span class="example-spacer"></span>
+            <button mat-icon-button class="example-icon h-28 w-28 " aria-label="Example icon-button with share icon">
+              <mat-icon class="text-white">perm_identity</mat-icon>
+            </button>
+          </mat-toolbar-row>
+        </mat-toolbar>  
+  </mat-drawer-container>

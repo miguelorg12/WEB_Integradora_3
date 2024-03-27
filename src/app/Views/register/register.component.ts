@@ -18,7 +18,7 @@ registerForm: any;
 ngOnInit() {
   this.registerForm = this.formBuilder.group({
     name: ['', Validators.required],
-    lastname: ['', Validators.required],
+    last_name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirm_password: ['', [Validators.required, Validators.minLength(6)]]
