@@ -4,57 +4,94 @@
         <img class="mx-auto h-32 w-auto" src="assets/logo.jpeg" alt="Logo">
         <h2 class="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-violet-950">Crear Usuario</h2>
     </div>
-    <div class="sm:mx-auto sm:w-1/3 sm:max-w-2xl">
-        <form class="space-y-2" action="#" method="POST">
-            <div>
-                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
-                <div class="mt-2">
-                    <input id="name" name="name" type="text" autocomplete="nombre" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+    <div class="sm:mx-auto sm:w-1/2 sm:max-w-2xl">
+        <form class="space-y-2" [formGroup]="createForm">
+            <div class="flex flex-wrap -mx-3">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div>
+                        <label  for="name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+                        <div class="">
+                            <input formControlName="name" name="name" type="text" autocomplete="nombre" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                        <div *ngIf="createForm.controls['name'].errors">
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['name'].errors['required']">El nombre es requerido</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['name'].errors['minlength']">El nombre debe tener al menos 3 caracteres</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['name'].errors['maxlength']">El nombre debe tener máximo 50 caracteres</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['name'].errors['pattern']">El nombre solo debe contener letras y espacios</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label  for="lastname" class="block text-sm font-medium leading-6 text-gray-900">Apellidos</label>
+                        <div class="">
+                            <input formControlName="last_name" name="lastname" type="text" autocomplete="nombre" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                        <div *ngIf="createForm.controls['last_name'].errors">
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['last_name'].errors['required']">Los apellidos son requeridos</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['last_name'].errors['minlength']">Los apellidos deben tener al menos 3 caracteres</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['last_name'].errors['maxlength']">Los apellidos deben tener máximo 50 caracteres</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['last_name'].errors['pattern']">Los apellidos solo deben contener letras y espacios</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label  for="email" class="block text-sm font-medium leading-6 text-gray-900">Correo</label>
+                        <div class="">
+                            <input formControlName="email" name="email" type="email" autocomplete="email" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                        <div *ngIf="createForm.controls['email'].errors">
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['email'].errors['required']">El email es requerido</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['email'].errors['email']">El email no es valido</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['email'].errors['maxlength']">El nombre debe tener máximo 255 caracteres</p>
+                        </div>
+                        <div *ngIf="backendErrors.email">
+                            <p class="text-red-500 font-medium text-sm">{{backendErrors.email}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                    <div>
+                        <label  for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+                        <div class="">
+                            <input formControlName="password" name="password" autocomplete="new-password" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                        <div *ngIf="createForm.controls['password'].errors">
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['password'].errors['required']">La contraseña es requerida</p>
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['password'].errors['minlength']">La contraseña debe tener 8 caracteres</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Confirmar Contraseña</label>
+                        <div class="">
+                            <input formControlName="confirm_password" name="confirmPassword" autocomplete="new-password" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                        <div *ngIf="createForm.controls['confirm_password'].errors">
+                            <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['confirm_password'].errors['required']">La confirmacion es requerida</p>
+                        </div>
+                        <div *ngIf="backendErrors.confirm_password">
+                            <p class="text-red-500 font-medium text-sm">{{backendErrors.confirm_password}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Rol</label>
+                        <div class="">
+                            <select formControlName="id_rol" name="role" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <option *ngFor="let rol of roles" [value]="rol.id">{{rol.nombre}}</option>
+                            </select>
+                            <div *ngIf="createForm.controls['id_rol'].errors">
+                                <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['id_rol'].errors['required']">El rol es requerido</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                <label for="lastname" class="block text-sm font-medium leading-6 text-gray-900">Apellidos</label>
-                <div class="mt-2">
-                    <input id="lastname" name="lastname" type="text" autocomplete="nombre" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
+            <div *ngIf="backendErrors.message">
+                <p class="text-red-500 font-medium text-sm">{{backendErrors.message}}</p>
             </div>
-            <div>
-                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Correo</label>
-                <div class="mt-2">
-                    <input id="email" name="email" type="email" autocomplete="email" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
+            <div *ngIf="succesMessages.message">
+                <p class="text-green-500 font-medium text-sm" *ngIf="succesMessages.message">{{succesMessages.message}}</p>
             </div>
-            <div>
-                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
-                <div class="mt-2">
-                    <input id="password" name="password" type="password" autocomplete="new-password" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-            </div>
-            <div>
-                <label for="confirmPassword" class="block text-sm font-medium leading-6 text-gray-900">Confirmar Contraseña</label>
-                <div class="mt-2">
-                    <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-            </div>
-            <div>
-                <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Rol</label>
-                <div class="mt-2">
-                    <select id="role" name="role" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        <option value="">Selecciona un rol</option>
-                        <!-- Añade aquí las opciones de rol -->
-                    </select>
-                </div>
-            </div>
-            <div>
-                <label for="hospital" class="block text-sm font-medium leading-6 text-gray-900">Hospital</label>
-                <div class="mt-2">
-                    <select id="hospital" name="hospital" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        <option value="">Selecciona un hospital</option>
-                    </select>
-                </div>
-            </div>
-            <div>
-                <button type="submit" [routerLink]="['/usuarios']" class="flex mb-10 w-full justify-center rounded-md bg-fuchsia-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-cyan-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Crear Usuario</button>
+            <div class="flex justify-center">
+                <button type="submit" (click)="crearUsuario()" class="flex mb-10 w-1/2 justify-center rounded-md bg-fuchsia-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-cyan-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Crear Usuario</button>
             </div>
         </form>
     </div>

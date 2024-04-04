@@ -1,5 +1,5 @@
 <app-side-tool>
-    <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-3/4 mx-auto">
+    <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-full mx-auto">
         <div class="w-full">
             <div class="flex justify-between items-center">
                 <h2 class="text-2xl font-bold leading-9 tracking-tight text-violet-950">Usuarios</h2>
@@ -7,35 +7,40 @@
                     <mat-icon class="mr-2">add</mat-icon>Crear Usuario
                 </a>
             </div>
+            <div *ngIf="successMessage.message">
+                <p class="text-green-500 font-medium text-sm">{{successMessage.message}}</p>
+            </div>
         </div>
 
         <div class="mt-5 w-full">
             <table class="table-auto w-full">
                 <thead>
                     <tr>
+                        <th class="px-4 py-2">#Id</th>
                         <th class="px-4 py-2">Nombre(s)</th>
                         <th class="px-4 py-2">Apellidos</th>
+                        <th class="px-4 py-2">Correo</th>
                         <th class="px-4 py-2">Rol</th>
                         <th class="px-4 py-2">Hospital</th>
-                        <th class="px-4 py-2">Estado</th>
                         <th class="px-4 py-2">Actualizar</th>
                         <th class="px-4 py-2">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="border px-2  text-center">Jhon</td>
-                        <td class="border px-2  text-center">Doe</td>
-                        <td class="border px-2  text-center">Admin</td>
-                        <td class="border px-2  text-center">Hospital 1</td>
-                        <td class="border px-2  text-center">Activo</td>
+                    <tr *ngFor="let user of usuarios">
+                        <td class="border px-2  text-center">{{user.id}}</td>
+                        <td class="border px-2  text-center">{{user.name}}</td>
+                        <td class="border px-2  text-center">{{user.last_name}}</td>
+                        <td class="border px-2  text-center">{{user.email}}</td>
+                        <td class="border px-2  text-center">{{user.rol}}</td>
+                        <td class="border px-2  text-center">{{user.hospital}}</td>
                         <td class="border px-2  text-center">
-                            <a [routerLink]="['/usuarios/edit/1']" class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            <a [routerLink]="['/usuarios/edit', user.id]" class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <mat-icon class="text-fuchsia-500">border_color</mat-icon>
                             </a>
                         </td>
                         <td class="border px-4 py-2 text-center">
-                            <button mat-icon-button class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 " aria-label="Example icon-button with heart icon">
+                            <button (click)="delete(user.id)" mat-icon-button class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 " aria-label="Example icon-button with heart icon">
                                 <mat-icon class="text-cyan-700 hover:text-fuchsia-500">delete</mat-icon>
                             </button>
                         </td>

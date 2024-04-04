@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environments';
 import { Usuario } from '../Modelos/usuario.model';
@@ -8,41 +8,36 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuarioService {
-  login(userData:{ email: string; password: string; }){
-    return this.http.post(`${environment.api_url}/auth/login`, userData);
-  }
   register(userData:Usuario){
     return this.http.post(`${environment.api_url}/auth/register`, userData);
   }
   recoveryPassword(email:string){
-    return this.http.post(`${environment.api_url}/auth/password-recovery`, {email});
+    return this.http.post(`${environment.api_url}/auth/restablecer`, {email});
   }
-  logCode(email:string){
-    return this.http.post(`${environment.api_url}/auth/logCode`, {email});
+  logCode(email:string, password:string){
+    return this.http.post(`${environment.api_url}/auth/logCode`, {email, password});
   }
-  codeVerificacion(code:string){
-    return this.http.post(`${environment.api_url}/auth/verifyCode`, {code});
+  codeVerificacion(codigo:string, email:string, password:string){
+    return this.http.post(`${environment.api_url}/auth/verifyCode`, {codigo, email, password});
   }
   checkAcountActive(userId:number){
     return this.http.get(`${environment.api_url}/auth/checkActive/${userId}`);
   }
   verifyToken(){
-    let email = this.cookie.get('email');
-    let role = this.cookie.get('role');
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.cookie.get('token'));
-    return this.http.post(`${environment.api_url}/auth/verifyToken`, {email, role}, {headers});
+    return this.http.post(`${environment.api_url}/auth/verifyToken`, {headers});
   }
   logout(){
     return this.http.post(`${environment.api_url}/auth/logout`, {});
-  }
-  me(): Observable<any>{
-    return this.http.post(`${environment.api_url}/auth/me`, {headers: this.headers});
   }
 
   private token : string = this.cookie.get('token');
   private headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
   
   constructor(private http: HttpClient, private cookie : CookieService) {
+  }
+  me(): Observable<any>{
+    return this.http.post(`${environment.api_url}/auth/me`, {headers: this.headers});
   }
   getUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${environment.api_url}/user/list`, {headers: this.headers});
@@ -53,8 +48,8 @@ export class UsuarioService {
   createUser(user: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${environment.api_url}/user/create`, user, {headers: this.headers});
   }
-  updateUser(user: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${environment.api_url}/user/update/${user.id}`, user, {headers: this.headers});
+  updateUser(user: Usuario, id: number): Observable<Usuario> {
+    return this.http.put<Usuario>(`${environment.api_url}/user/update/${id}`, user, {headers: this.headers});
   }
   deleteUser(id: number): Observable<Usuario> {
     return this.http.delete<Usuario>(`${environment.api_url}/user/delete/${id}`, {headers: this.headers});

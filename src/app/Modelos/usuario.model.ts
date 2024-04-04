@@ -4,11 +4,12 @@ export interface Usuario {
     last_name: string;
     email: string;
     password: string;
+    confirm_password?: string;
     is_active?: number;
     id_rol?: number;
     id_hospital?: number;
-    nombre_hospital?: string;
-    nombre_rol?: string;
+    hospital?: string;
+    rol?: string;
     created_at?: string;
     updated_at?: string;
 }

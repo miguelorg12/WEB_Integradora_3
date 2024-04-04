@@ -43,6 +43,6 @@ export const routes: Routes = [
     { path: 'hospitales', loadComponent:() => import('./Views/Hospitales/index/index.component').then(m => m.IndexComponent)},
     { path: 'hospitales/create', loadComponent:() => import('./Views/Hospitales/create/create.component').then(m => m.CreateComponent)},
     { path: 'hospitales/edit/:id', loadComponent:() => import('./Views/Hospitales/update/update.component').then(m => m.UpdateComponent)},
-    { path: '', component: WelcomeComponent},
+    { path: '', component: HomeComponent},
     { path: '**', component: HomeComponent}
 ];

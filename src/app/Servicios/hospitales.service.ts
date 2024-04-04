@@ -13,6 +13,9 @@ export class HospitalesService {
   private token : string = this.cookie.get('token');
   private headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
 
+  getHospitalesNtoken(): Observable<Hospital[]> {
+    return this.http.get<Hospital[]>(`${environment.api_url}/hospital/listNtoken`);
+  }
   getHospitales(): Observable<Hospital[]> {
     return this.http.get<Hospital[]>(`${environment.api_url}/hospital/list`, {headers: this.headers});
   }
@@ -25,8 +28,8 @@ export class HospitalesService {
     return this.http.post<Hospital>(`${environment.api_url}/hospital/create`, hospital, {headers: this.headers});
   }
 
-  updateHospital(hospital: Hospital) : Observable<Hospital>{
-    return this.http.put<Hospital>(`${environment.api_url}/hospital/update/${hospital.id}`, hospital, {headers: this.headers});
+  updateHospital(hospital: Hospital, id:number) : Observable<Hospital>{
+    return this.http.put<Hospital>(`${environment.api_url}/hospital/update/${id}`, hospital, {headers: this.headers});
   }
 
   deleteHospital(id: number) : Observable<Hospital>{
