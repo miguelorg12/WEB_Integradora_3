@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SideToolComponent } from '../../General/side-tool/side-tool.component';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SideToolComponent],
+  imports: [SideToolComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   animations: [
@@ -18,8 +20,10 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class HomeComponent implements OnInit{
   isLoaded = false;
-
+  rol_id = 0;
+  constructor(private cookie: CookieService) { }
   ngOnInit() {
+    this.rol_id = Number(this.cookie.get('id_rol'));
     setTimeout(() => {
       this.isLoaded = true;
     }, 0);

@@ -7,12 +7,17 @@
                     <mat-icon class="mr-2">add</mat-icon>Crear Usuario
                 </a>
             </div>
+            <div *ngIf="usuarios.length <= 0">
+                <tr>
+                    <td class="text-red-500 font-medium text-2xl">No hay registros</td>
+                </tr>
+            </div>
             <div *ngIf="successMessage.message">
                 <p class="text-green-500 font-medium text-sm">{{successMessage.message}}</p>
             </div>
         </div>
 
-        <div class="mt-5 w-full">
+        <div class="mt-5 w-full" *ngIf="usuarios.length > 0">
             <table class="table-auto w-full">
                 <thead>
                     <tr>

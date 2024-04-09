@@ -50,7 +50,8 @@ export class UpdateComponent implements AfterContentInit {
     });
     this.hospitalesService.getHospitales().subscribe({
       next: (response: any) => {
-        this.hospitales = response.data;
+        console.log(response);
+        this.hospitales = response.Hospitales;
         console.log(this.hospitales);
       },
       error: (error: any) => {

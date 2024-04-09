@@ -54,4 +54,9 @@ export class UsuarioService {
   deleteUser(id: number): Observable<Usuario> {
     return this.http.delete<Usuario>(`${environment.api_url}/user/delete/${id}`, {headers: this.headers});
   } 
+
+  getRole(): Observable<any>{
+    return this.http.get(`${environment.api_url}/user/getRole`, {headers: this.headers});
+  }
+
 }

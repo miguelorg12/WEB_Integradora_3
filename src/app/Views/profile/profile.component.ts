@@ -36,7 +36,6 @@ export class ProfileComponent implements AfterContentInit {
     this.hospitalService.getHospitales().subscribe((response: any) => {
       this.hospitales = response.Hospitales;
       console.log(this.hospitales);
-
     });
     this.profileForm.setValue({
       name: this.usuario_nombre,

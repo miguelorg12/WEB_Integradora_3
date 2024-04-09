@@ -46,6 +46,8 @@ export class CodeVerificacionComponent {
           localStorage.removeItem('email');
           localStorage.removeItem('password');
           this.succesMessages.message = 'Código correcto';
+          this.backendErrors.code = '';
+          this.backendErrors.message = '';
           this.cookie.set('token', response.access_token, 1);
           setTimeout(() => {
             this.backendErrors = {};

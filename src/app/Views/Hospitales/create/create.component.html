@@ -11,7 +11,7 @@
                 <div class="mt-2">
                     <input formControlName="nombre" name="name" type="text" autocomplete="nombre" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                <div *ngIf="createForm.controls['nombre'].errors">
+                <div *ngIf="createForm.controls['nombre'].errors && createForm.controls['nombre'].touched">
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['nombre'].errors['required']">El nombre es requerido</p>
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['nombre'].errors['minlength']">El nombre debe contener al menos 3 caracteres</p>
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['nombre'].errors['maxlength']">El nombre debe contener maximo 100 caracteres</p>
@@ -23,7 +23,7 @@
                 <div class="mt-2">
                     <input formControlName="direccion" name="address" type="text" autocomplete="direccion" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                <div *ngIf="createForm.controls['direccion'].errors">
+                <div *ngIf="createForm.controls['direccion'].errors && createForm.controls['direccion'].touched">
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['direccion'].errors['required']">La direccion es requerida</p>
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['direccion'].errors['minlength']">La direccion debe contener al menos 3 caracteres</p>
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['direccion'].errors['maxlength']">La direccion debe contener maximo 100 caracteres</p>
@@ -34,7 +34,7 @@
                 <div class="mt-2">
                     <input formControlName="telefono" name="phone" type="tel" autocomplete="telefono" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                <div *ngIf="createForm.controls['telefono'].errors">
+                <div *ngIf="createForm.controls['telefono'].errors && createForm.controls['telefono'].touched">
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['telefono'].errors['required']">El telefono es requerido</p>
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['telefono'].errors['minlength']">El telefono debe tener un minimo de 10 digitos</p>
                     <p class="text-red-500 font-medium text-sm" *ngIf="createForm.controls['telefono'].errors['maxlength']">El telefono debe tener un maximo de 10 digitos</p>

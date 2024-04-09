@@ -10,7 +10,7 @@
           <div class="">
             <input formControlName="name" name="name" type="text" autocomplete="nombre" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
           </div>
-          <div *ngIf="registerForm.controls['name'].errors">
+          <div *ngIf="registerForm.controls['name'].errors && registerForm.controls['name'].touched">
           <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['name'].errors['required']">El nombre es requerido</p>
           <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['name'].errors['minlength']">El nombre debe tener al menos 3 caracteres</p>
           <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['name'].errors['maxlength']">El nombre debe tener máximo 50 caracteres</p>
@@ -22,7 +22,7 @@
           <div class="">
             <input formControlName="last_name" name="lastname" type="text" autocomplete="nombre" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
           </div>
-          <div *ngIf="registerForm.controls['last_name'].errors">
+          <div *ngIf="registerForm.controls['last_name'].errors && registerForm.controls['last_name'].touched">
             <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['last_name'].errors['required']">Los apellidos son requeridos</p>
             <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['last_name'].errors['minlength']">Los apellidos deben tener al menos 3 caracteres</p>
             <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['last_name'].errors['maxlength']">Los apellidos deben tener máximo 50 caracteres</p>
@@ -34,7 +34,7 @@
           <div class="">
             <input formControlName="email" name="email" type="email" autocomplete="email" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
           </div>
-          <div *ngIf="registerForm.controls['email'].errors">
+          <div *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].touched">
             <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['email'].errors['required']">El correo es requerido</p>
             <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['email'].errors['email']">Ingrese un correo valido</p>
             <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['email'].errors['maxlength']">El correo tiene un maximo de 255 caracteres</p>
@@ -54,7 +54,7 @@
                   <svg class="h-5 w-5" [ngClass]="{'hidden': hide}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12a2 2 0 014 0"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12c2.264 4.5 6.236 7.5 11.5 7.5s9.236-3 11.5-7.5-2.264-7.5-6.5-7.5-9.236 3-11.5 7.5z"></path></svg>
               </div>
           </div>
-          <div *ngIf="registerForm.controls['password'].errors">
+          <div *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].touched">
             <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['password'].errors['required']">La contraseña es requerida</p>
             <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['password'].errors['minlength']">La contraseña debe contener al menos 8 caracteres</p>
           </div>
@@ -71,7 +71,7 @@
                     <svg class="h-5 w-5" [ngClass]="{'hidden': hideConfirmPassword}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12a2 2 0 014 0"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12c2.264 4.5 6.236 7.5 11.5 7.5s9.236-3 11.5-7.5-2.264-7.5-6.5-7.5-9.236 3-11.5 7.5z"></path></svg>
                 </div>
             </div>
-            <div *ngIf="registerForm.controls['confirm_password'].errors">
+            <div *ngIf="registerForm.controls['confirm_password'].errors && registerForm.controls['confirm_password'].touched">
               <p class="text-red-500 font-medium text-sm" *ngIf="registerForm.controls['confirm_password'].errors['required']">La confirmacion de contraseña es requerida</p>
             </div>
             <div *ngIf="backendErrors.confirm_password">

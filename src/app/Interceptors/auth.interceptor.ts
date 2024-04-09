@@ -26,7 +26,6 @@ export class AuthInterceptor implements HttpInterceptor {
           this.cookieService.delete('token'); 
           this.router.navigate(['/login']);
         }
-
         return throwError(error);
       })
     );

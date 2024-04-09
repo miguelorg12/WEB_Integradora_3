@@ -11,7 +11,7 @@
           <div class="mt-2">
             <input formControlName="email" class="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-purple-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
           </div>
-          <div *ngIf="loginForm.controls['email'].errors">
+          <div *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].touched">
             <p class="text-red-500 font-medium text-sm" *ngIf="loginForm.controls['email'].errors['required']">El correo es requerido</p>
           </div>
         </div>
@@ -29,7 +29,7 @@
                     <svg class="h-5 w-5" [ngClass]="{'hidden': hide}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12a2 2 0 014 0"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12c2.264 4.5 6.236 7.5 11.5 7.5s9.236-3 11.5-7.5-2.264-7.5-6.5-7.5-9.236 3-11.5 7.5z"></path></svg>
                 </div>
             </div>
-            <div *ngIf="loginForm.controls['password'].errors">
+            <div *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].touched">
               <p class="text-red-500 font-medium text-sm" *ngIf="loginForm.controls['password'].errors['required']">La contraseña es requerida</p>
             </div>
         </div>
@@ -45,6 +45,13 @@
         <div *ngIf="backendErrors.message">
           <p class="text-red-500 font-medium text-sm">{{backendErrors.message}}</p>
         </div>
+        <div *ngIf="backendErrors.active">
+          <p class="text-red-500 font-medium text-sm">{{backendErrors.active}}</p>
+        </div>
+        <div *ngIf="backendErrors.activeAdmin">
+          <p class="text-red-500 font-medium text-sm">{{backendErrors.activeAdmin}}</p>
+        </div>
+  
   
         <div>
           <button type="submit" class="flex w-full justify-center rounded-md bg-cyan-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" (click)="login()">Iniciar Sesion</button>

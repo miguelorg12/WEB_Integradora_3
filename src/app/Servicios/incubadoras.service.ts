@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environments';
 import { Incubadora } from '../Modelos/incubadoras.model';
+import { EstadoIncubadora } from '../Modelos/estadoIncubadora.model';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,27 @@ export class IncubadorasService {
   deleteIncubadora(id: number) : Observable<Incubadora>{
     return this.http.delete<Incubadora>(`${environment.api_url}/incubadora/delete/${id}`, {headers: this.headers});
   }
+
+  getEstadosIncubadora(): Observable<EstadoIncubadora[]> {
+    return this.http.get<EstadoIncubadora[]>(`${environment.api_url}/estadoIncubadora/list`, {headers: this.headers});
+  }
+
+  getEstadosIncubadoraByIncubadora(id: number): Observable<EstadoIncubadora[]> {
+    return this.http.get<EstadoIncubadora[]>(`${environment.api_url}/estadoIncubadora/listByIncubadora/${id}`, {headers: this.headers});
+  }
+
+  createEstadoIncubadora(estadoIncubadora: EstadoIncubadora): Observable<EstadoIncubadora> {
+    return this.http.post<EstadoIncubadora>(`${environment.api_url}/estadoIncubadora/create`, estadoIncubadora, {headers: this.headers});
+  }
+
+  updateEstadoIncubadora(estadoIncubadora: EstadoIncubadora): Observable<EstadoIncubadora> {
+    return this.http.put<EstadoIncubadora>(`${environment.api_url}/estadoIncubadora/update/${estadoIncubadora.id}`, estadoIncubadora, {headers: this.headers});
+  }
+
+  deleteEstadoIncubadora(id: number): Observable<EstadoIncubadora> {
+    return this.http.delete<EstadoIncubadora>(`${environment.api_url}/estadoIncubadora/delete/${id}`, {headers: this.headers});
+  }
+
+  
 
 }

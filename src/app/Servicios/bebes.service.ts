@@ -25,8 +25,8 @@ export class BebesService {
     return this.http.post<Bebe>(`${environment.api_url}/bebes/create`, bebe, { headers: this.headers });
   }
 
-  updateBebe(bebe: Bebe): Observable<Bebe> {
-    return this.http.put<Bebe>(`${environment.api_url}/bebes/update/${bebe.id}`, bebe, { headers: this.headers });
+  updateBebe(id:number,bebe: Bebe): Observable<Bebe> {
+    return this.http.put<Bebe>(`${environment.api_url}/bebes/update/${id}`, bebe, { headers: this.headers });
   }
 
   deleteBebe(id: number): Observable<Bebe> {
