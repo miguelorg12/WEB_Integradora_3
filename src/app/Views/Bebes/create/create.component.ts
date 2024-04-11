@@ -52,7 +52,7 @@ export class CreateComponent implements AfterContentInit {
         console.log(error);
       }
     });
-    this.incubadoraService.getIncubadoras().subscribe({
+    this.incubadoraService.getIncubadorasDisponibles().subscribe({
       next: (response: any) => {
         this.incubadoras = response.Incubadoras;
         console.log(response)

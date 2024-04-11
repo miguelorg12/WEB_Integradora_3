@@ -1,5 +1,5 @@
 <app-side-tool>
-    <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-3/4 mx-auto">
+    <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-full mx-auto">
         <div class="w-full">
             <div class="flex justify-between items-center">
                 <h2 class="text-2xl font-bold leading-9 tracking-tight text-violet-950">Historiales Medicos</h2>
@@ -7,9 +7,17 @@
                     <mat-icon class="mr-2">add</mat-icon>Registrar Historial
                 </a>
             </div>
+            <div *ngIf="successMessage.message">
+                <p class="text-green-500 font-medium text-sm">{{successMessage.message}}</p>
+            </div>
+            <div *ngIf="historiales.length <= 0">
+                <tr>
+                    <td class="text-red-500 font-medium text-2xl">No hay registros</td>
+                </tr>
+            </div>
         </div>
 
-        <div class="mt-5 w-full">
+        <div class="mt-5 w-full" *ngIf="historiales.length > 0">
             <table class="table-auto w-full">
                 <thead>
                     <tr>
@@ -22,18 +30,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="border px-2  text-center">1</td>
-                        <td class="border px-2  text-center">Jhon</td>
-                        <td class="border px-2  text-center">Doe</td>
-                        <td class="border px-2  text-center">Admin</td>
+                    <tr *ngFor="let historial of historiales">
+                        <td class="border px-2  text-center">{{historial.id}}</td>
+                        <td class="border px-2  text-center">{{historial.bebe + " " + historial.bebe_apellido}}</td>
+                        <td class="border px-2  text-center">{{historial.diagnostico}}</td>
+                        <td class="border px-2  text-center">{{historial.medicamentos}}</td>
                         <td class="border px-2  text-center">
-                            <a [routerLink]="['/historial/edit/1']" class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            <a [routerLink]="['/historial/edit/', historial.id]" class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <mat-icon class="text-fuchsia-500">border_color</mat-icon>
                             </a>
                         </td>
                         <td class="border px-4 py-2 text-center">
-                            <button mat-icon-button class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 " aria-label="Example icon-button with heart icon">
+                            <button (click)="delete(historial.id)" mat-icon-button class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 " aria-label="Example icon-button with heart icon">
                                 <mat-icon class="text-cyan-700 hover:text-fuchsia-500">delete</mat-icon>
                             </button>
                         </td>

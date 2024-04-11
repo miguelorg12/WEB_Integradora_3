@@ -20,15 +20,15 @@ export class HistorialService {
   }
 
   getHistorialbyId(id: number): Observable<Historial> {
-    return this.http.get<Historial>(`${environment.api_url}/historial/oneHistorialMedicoBebe/${id}`, { headers: this.headers });
+    return this.http.get<Historial>(`${environment.api_url}/historial/oneHistorial/${id}`, { headers: this.headers });
   }
 
   createHistorial(historial: Historial): Observable<Historial> {
     return this.http.post<Historial>(`${environment.api_url}/historial/create`, historial, { headers: this.headers });
   }
 
-  updateHistorial(historial: Historial): Observable<Historial> {
-    return this.http.put<Historial>(`${environment.api_url}/historial/update/${historial.id}`, historial, { headers: this.headers });
+  updateHistorial(historial: Historial, id:number): Observable<Historial> {
+    return this.http.put<Historial>(`${environment.api_url}/historial/update/${id}`, historial, { headers: this.headers });
   }
 
   deleteHistorial(id: number): Observable<Historial> {

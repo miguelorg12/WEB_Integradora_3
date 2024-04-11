@@ -22,8 +22,8 @@ export class ContactoService {
   createContacto(contacto: Contacto) : Observable<Contacto> {
     return this.http.post<Contacto>(`${environment.api_url}/contactoFamiliar/create`, contacto, {headers: this.headers});
   }
-  updateContacto(contacto: Contacto) : Observable<Contacto>{
-    return this.http.put<Contacto>(`${environment.api_url}/contactoFamiliar/update/${contacto.id}`, contacto, {headers: this.headers});
+  updateContacto(contacto: Contacto, id:number) : Observable<Contacto>{
+    return this.http.put<Contacto>(`${environment.api_url}/contactoFamiliar/update/${id}`, contacto, {headers: this.headers});
   }
   deleteContacto(id: number) : Observable<Contacto>{
     return this.http.delete<Contacto>(`${environment.api_url}/contactoFamiliar/delete/${id}`, {headers: this.headers});

@@ -38,10 +38,6 @@
             *ngIf = "rol_user === 1 || rol_user === 2 || rol_user === 3 || rol_user === 4">
                 <mat-icon class="mr-2">history_edu</mat-icon>Historiales Medicos
             </a>
-            <a [routerLink]="['/values']" class="flex items-center text-white mt-9 font-semibold hover:text-gray-300 "
-            *ngIf = "rol_user === 1">
-                <mat-icon class="mr-2">insights</mat-icon>Valores Sensores
-            </a>
         </div>
     </mat-drawer>
     <mat-drawer-content>

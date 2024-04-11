@@ -9,6 +9,7 @@ import { SensoresService } from '../../../Servicios/sensores.service';
 import { Sensor } from '../../../Modelos/sensores.model';
 import { EstadoIncubadora } from '../../../Modelos/estadoIncubadora.model';
 import { FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-create',
   standalone: true,
@@ -20,6 +21,7 @@ export class CreateComponent implements AfterContentInit {
   hospitales : Hospital[] = [];
   estados : EstadoIncubadora[] = [];
   sensoresSeleccionados : number[] = [];
+  id_rol : any;
   sensores : Sensor[] = [];
   backendErrors: any = {};
   succesMessages: any = {};
@@ -30,9 +32,11 @@ export class CreateComponent implements AfterContentInit {
   });
 
   constructor(private router: Router, private incubadorasService: IncubadorasService,
-    private hospitalesService: HospitalesService, private sensoresService: SensoresService) { }
+    private hospitalesService: HospitalesService, private sensoresService: SensoresService,
+  private cookies:CookieService) { }
   
   ngAfterContentInit(): void {
+    this.id_rol = this.cookies.get('id_rol');
     this.hospitalesService.getHospitales().subscribe({
       next: (response: any) => {
         this.hospitales = response.Hospitales;

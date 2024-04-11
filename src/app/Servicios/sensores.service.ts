@@ -24,8 +24,8 @@ export class SensoresService {
     return this.http.post<Sensor>(`${environment.api_url}/sensores/create`, sensor, {headers: this.headers});
   }
 
-  updateSensor(sensor: Sensor) : Observable<Sensor>{
-    return this.http.put<Sensor>(`${environment.api_url}/sensores/update/${sensor.id}`, sensor, {headers: this.headers});
+  updateSensor(sensor: Sensor, id : number) : Observable<Sensor>{
+    return this.http.put<Sensor>(`${environment.api_url}/sensores/update/${id}`, sensor, {headers: this.headers});
   }
 
   deleteSensor(id: number) : Observable<Sensor>{

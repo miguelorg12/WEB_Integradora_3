@@ -1,8 +1,9 @@
 export interface Historial {
     id: number;
     id_bebe: number;
-    nombre_bebe?: string;
-    diagnosticos: string;
+    bebe?: string;
+    bebe_apellido?: string;
+    diagnostico: string;
     medicamentos: string;
     is_active?: number;
     created_at?: string;
