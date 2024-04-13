@@ -32,7 +32,7 @@ constructor(private router: Router,
     email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(255), ]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     confirm_password: new FormControl('', [Validators.required]),
-    id_hospital: new FormControl(0),
+    id_hospital: new FormControl('', [Validators.required]),
   });
 
   ngAfterContentInit(): void {

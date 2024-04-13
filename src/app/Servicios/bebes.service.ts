@@ -16,7 +16,9 @@ export class BebesService {
   getBebes(): Observable<Bebe[]> {
     return this.http.get<Bebe[]>(`${environment.api_url}/bebes/list`, { headers: this.headers });
   }
-
+  getBebeFull(id: number): Observable<Bebe> {
+    return this.http.get<Bebe>(`${environment.api_url}/bebes/bebefull/${id}`, { headers: this.headers });
+  }
   getBebebyId(id: number): Observable<Bebe> {
     return this.http.get<Bebe>(`${environment.api_url}/bebes/oneBebe/${id}`, { headers: this.headers });
   }

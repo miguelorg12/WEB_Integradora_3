@@ -45,5 +45,5 @@ export const routes: Routes = [
     { path: 'hospitales/create', loadComponent:() => import('./Views/Hospitales/create/create.component').then(m => m.CreateComponent), canActivate: [AuthGuard, RoleGuard], data: {role: ['Developer']}},
     { path: 'hospitales/edit/:id', loadComponent:() => import('./Views/Hospitales/update/update.component').then(m => m.UpdateComponent), canActivate: [AuthGuard, RoleGuard], data: {role: ['Developer']}},
     { path: '', component: WelcomeComponent},
-    { path: '**', component: HomeComponent, canActivate: [AuthGuard]}
+    { path: '**', loadComponent:() => import('./General/not-found/not-found.component').then(m => m.NotFoundComponent)}
 ];

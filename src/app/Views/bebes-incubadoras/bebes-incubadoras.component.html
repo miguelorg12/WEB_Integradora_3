@@ -13,20 +13,18 @@
             </button>
         </div>
         <div class="flex flex-wrap justify-start mt-5 -mx-2">
-            <!-- Repite este bloque para cada grupo de 3 cards -->
             <ng-container *ngFor="let group of cardGroups">
                 <div class="flex flex-wrap w-full">
-                    <div class="w-full sm:w-full md:w-1/4 px-2 mb-4" *ngFor="let i of [0,1,2,3,4,5,6,7,8,9, 10, 11 ,12 ]">
+                    <div class="w-full sm:w-full md:w-1/4 px-2 mb-4" *ngFor="let incubadora of incubadoras">
                         <div class="max-w-xs rounded overflow-hidden shadow-lg border border-gray-300">
                             <img class="w-full h-full object-cover" src="assets/cards.jpeg" alt="">
                             <div class="px-6 py-4">
-                                <div class="font-bold text-l mb-2">#Incubadora</div>
-                                <p class="text-gray-700 ">Nombre del Bebe</p>
-                                <p class="text-gray-700">Estado del bebe</p>
-                                <p class="text-gray-700">Estado de la incubadora</p>
-                                <p class="text-gray-700">Sexo</p>
+                                <div class="font-bold text-l mb-2">Numero de incubadora:{{incubadora.id}}</div>
                             </div>
-                            <div class="px-6 pt-4 pb-2">
+                            <div class="px-6 pt-4 pb-2 ">
+                                <button (click)="openDialog(incubadora.id_bebe)" class="bg-purple-500 w-full justify-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                    Ver Informacion del bebe
+                                </button>
                             </div>
                         </div>
                     </div>

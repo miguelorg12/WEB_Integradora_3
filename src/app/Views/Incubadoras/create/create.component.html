@@ -45,7 +45,7 @@
                 <p class="text-green-500 font-medium text-sm">{{succesMessages.message}}</p>
             </div>
             <div *ngIf="backendErrors.message">
-                <p class="text-green-500 font-medium text-sm">{{backendErrors.message}}</p>
+                <p class="text-red-500 font-medium text-sm">{{backendErrors.message}}</p>
             </div>
             <div>
                 <button type="submit" (click)="crearIncubadora()"  class="flex w-full justify-center rounded-md bg-fuchsia-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-cyan-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Registrar Incubadora</button>

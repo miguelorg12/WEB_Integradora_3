@@ -24,8 +24,9 @@ export class IndexComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     this.bebeService.getBebes().subscribe({
       next: (response: any) => {
-        this.bebes = response.data;
+        this.bebes = response.Bebes;
         console.log(this.bebes);
+        console.log(response);
       },
       error: (error: any) => {
         console.log(error);

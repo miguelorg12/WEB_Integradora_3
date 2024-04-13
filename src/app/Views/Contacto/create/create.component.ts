@@ -33,7 +33,7 @@ export class CreateComponent implements AfterContentInit {
     this.bebeService.getBebes().subscribe({
       next: (response: any) => {
         console.log(response);
-        this.bebes = response.data;
+        this.bebes = response.Bebes;
       },
       error: (error: any) => {
         console.log(error);

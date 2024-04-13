@@ -29,13 +29,17 @@ export class IncubadorasService {
   getIncubadorasDisponibles(): Observable<Incubadora[]>{
     return this.http.get<Incubadora[]>(`${environment.api_url}/incubadora/incubadorasDisponibles`, {headers: this.headers});
   }
+  
+  getIncubadorasOcupadas(): Observable<Incubadora[]>{
+      return this.http.get<Incubadora[]>(`${environment.api_url}/incubadora/incubadorasOcupadas`, {headers: this.headers});
+  }
 
   createIncubadora(incubadora: Incubadora) : Observable<Incubadora>{
     return this.http.post<Incubadora>(`${environment.api_url}/incubadora/create`, incubadora, {headers: this.headers});
   }
 
-  updateIncubadora(incubadora: Incubadora): Observable<Incubadora> {
-    return this.http.put<Incubadora>(`${environment.api_url}/incubadora/update/${incubadora.id}`, incubadora, {headers: this.headers});
+  updateIncubadora(incubadora: Incubadora, id:number): Observable<Incubadora> {
+    return this.http.put<Incubadora>(`${environment.api_url}/incubadora/update/${id}`, incubadora, {headers: this.headers});
   }
 
   deleteIncubadora(id: number) : Observable<Incubadora>{

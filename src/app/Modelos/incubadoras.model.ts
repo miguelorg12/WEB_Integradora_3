@@ -3,8 +3,9 @@ export interface Incubadora {
     id_hospital?: number;
     hospital?: string;
     is_active?: number;
-    is_ocuppied?: number;
+    is_occupied?: number;
     estado?:string;
+    id_bebe?: number;
     optimo?: number;
     created_at?: string;
     updated_at?: string;

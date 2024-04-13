@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../Servicios/usuario.service';
 import { Usuario } from '../../Modelos/usuario.model';
 import { CookieService } from 'ngx-cookie-service';
+import { CerrarSesionComponent } from '../ModalesConfirmacion/cerrar-sesion/cerrar-sesion.component';
+import { MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-side-tool',
   standalone: true,
@@ -30,7 +33,8 @@ export class SideToolComponent implements AfterContentInit {
   nombre = '';
   rol_user = 0;
   constructor(private usuarioService: UsuarioService, private cookie: CookieService,
-    private router : Router) { }
+    private router : Router,
+    private dialog : MatDialog) { }
 
   ngAfterContentInit(): void {
     this.rol_user = parseInt(this.cookie.get('id_rol'));
@@ -53,14 +57,19 @@ export class SideToolComponent implements AfterContentInit {
 }
 
   logout(){
-    this.usuarioService.logout().subscribe({
-      next: (response: any) => {
-        this.cookie.deleteAll();
-        this.router.navigate(['/login']);
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
+    const dialogRef = this.dialog.open(CerrarSesionComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.usuarioService.logout().subscribe({
+          next: (response: any) => {
+            this.cookie.deleteAll();
+            this.router.navigate(['/login']);
+            console.log(response);
+          },
+          error: (error: any) => {
+            console.log(error);
+          }
+        });
       }
     });
   }
