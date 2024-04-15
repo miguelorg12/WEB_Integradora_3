@@ -1,1 +1,55 @@
-<p>create works!</p>
+<app-toolbar></app-toolbar>
+<div class="flex mt-10 flex-col justify-center">
+    <div class="sm:mx-auto sm:w-1/2 sm:max-w-2xl">
+        <img class="mx-auto h-32 w-auto" src="assets/logo.jpeg" alt="Logo">
+        <h2 class="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-violet-950">Registrar Incubadora</h2>
+    </div>
+    <div class="sm:mx-auto sm:w-1/3 sm:max-w-2xl">
+        <form class="space-y-2" [formGroup]="Form">
+            <div *ngIf="id_rol==1">
+                <label for="hospital" class="block text-sm font-medium leading-6 text-gray-900">Hospital</label>
+                <div class="mt-2">
+                    <select formControlName="id_hospital" name="hospital" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <option *ngFor="let hospital of hospitales" [value]="hospital.id">{{hospital.nombre}}</option>
+                    </select>
+                    <div *ngIf="Form.controls['id_hospital'].errors && Form.controls['id_hospital'].touched">
+                        <p class="text-red-500 font-medium text-sm" *ngIf="Form.controls['id_hospital'].errors['required']">El hospital es requerido</p>
+                    </div>
+
+                </div>
+            </div>
+            <label for="hospital" class="block text-sm font-medium leading-6 text-gray-900">Agregar Sensores</label>
+            <div class="grid grid-cols-3 gap-4">
+                <div *ngFor="let sensor of sensores">
+                    <label>
+                        <input type="checkbox" [value]="sensor.id" (change)="agregarSensor($event, sensor.id)">
+                        {{sensor.nombre}}
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="sensoresSeleccionados.length === 0">
+                <p class="text-red-500 font-medium text-sm">Al menos 1 sensor es requerido</p>
+            </div>
+            <div>
+                <label for="maintenance" class="block text-sm font-medium leading-6 text-gray-900">Estado del Mantenimiento</label>
+                <div class="mt-2">
+                    <select formControlName="id_estado" name="maintenance" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <option *ngFor="let estado of estados" [value]="estado.id">{{estado.estado}}</option>
+                    </select>
+                    <div *ngIf="Form.controls['id_estado'].errors && Form.controls['id_estado'].touched">
+                        <p class="text-red-500 font-medium text-sm" *ngIf="Form.controls['id_estado'].errors['required']">El estado es requerido</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="succesMessages.message">
+                <p class="text-green-500 font-medium text-sm">{{succesMessages.message}}</p>
+            </div>
+            <div *ngIf="backendErrors.message">
+                <p class="text-red-500 font-medium text-sm">{{backendErrors.message}}</p>
+            </div>
+            <div>
+                <button type="submit" (click)="crearIncubadora()"  class="flex w-full justify-center rounded-md bg-fuchsia-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-cyan-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Registrar Incubadora</button>
+            </div>
+        </form>
+    </div>
+</div>

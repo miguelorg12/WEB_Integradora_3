@@ -4,12 +4,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon'; 
 import { SideToolComponent } from '../../../General/side-tool/side-tool.component';
+import { NgModule } from '@angular/core';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
   standalone: true,
-imports: [MatListModule, MatCardModule, MatIconModule, CommonModule, SideToolComponent]
+  imports: [MatListModule, MatCardModule, MatIconModule, CommonModule, SideToolComponent]
 })
 export class IndexComponent {
   displayedColumns: string[] = ['sensor_value', 'sensor_id', 'incubadora_id', 'bebe_id'];

@@ -1,1 +1,55 @@
-<p>index works!</p>
+<app-side-tool>
+    <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-full mx-auto">
+        <div class="w-full">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold leading-9 tracking-tight text-violet-950">Incubadoras</h2>
+                <a [routerLink]="['/incubadoras/create']" class="flex items-center rounded-md bg-cyan-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <mat-icon class="mr-2">add</mat-icon>Registrar Incubadora
+                </a>
+            </div>
+            <div *ngIf="incubadoras.length === 0">
+                <tr>
+                    <td class="text-red-500 font-medium text-2xl">No hay registros</td>
+                </tr>
+            </div>
+            <div *ngIf="successMessage.message">
+                    <p class="text-green-500 font-medium text-sm">{{successMessage.message}}</p>
+            </div>
+        </div>
+
+        <div class="mt-5 w-full" *ngIf="incubadoras.length > 0">
+            <table class="table-auto w-full">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Id</th>
+                        <th class="px-4 py-2">Hospital</th>
+                        <th class="px-4 py-2">Estado</th>
+                        <th class="px-4 py-2">Ocupada</th>
+                        <th class="px-4 py-2">Estado del Mantenimiento</th>
+                        <th class="px-4 py-2">Actualizar</th>
+                        <th class="px-4 py-2">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let incubadora of incubadoras">
+                        <td class="border px-2  text-center">{{incubadora.id}}</td>
+                        <td class="border px-2  text-center">{{incubadora.hospital}}</td> 
+                        <td class="border px-2  text-center">{{incubadora.is_active == 1 ? 'Activa' : 'Inactiva'}}</td>      
+                        <td class="border px-2  text-center">{{incubadora.is_occupied == 1 ? 'Ocupada' : 'Disponible'}}</td>
+                        <td class="border px-2  text-center">{{incubadora.estado}}</td>
+                        <td class="border px-2  text-center">
+                            <a [routerLink]="['/incubadoras/edit', incubadora.id]" class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                <mat-icon class="text-fuchsia-500">border_color</mat-icon>
+                            </a>
+                        </td>
+                        <td class="border px-4 py-2 text-center">
+                            <button (click)="delete(incubadora.id)" mat-icon-button class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 " aria-label="Example icon-button with heart icon">
+                                <mat-icon class="text-cyan-700 hover:text-fuchsia-500">delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</app-side-tool>

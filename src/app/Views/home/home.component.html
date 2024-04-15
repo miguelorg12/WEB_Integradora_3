@@ -1,1 +1,10 @@
-<app-side-tool></app-side-tool>
+<app-side-tool>
+    <div class="flex mt-20 justify-center items-center m-0 p-0">
+        <div class="flex flex-col justify-center items-center sm:w-96 sm:m-auto mx-2 space-y-5 text-center" [@fadeIn]="isLoaded ? 'in' : 'out'">
+            <img class="w-64 h-64" src="assets/logo.jpeg" alt="Logo">
+            <h1 class="font-bold text-3xl text-purple-600">¡Bienvenido a Smart Nest!</h1>
+            <p class="font-bold text-l text-purple-950" *ngIf="rol_id === 5">Espere a que su administrador del hospital le asigne un rol, si no aparece en la lista de usuarios de su hospital, actualice su perfil a el hospital correcto</p>
+            <p class="font-bold text-xl text-purple-950" *ngIf="rol_id != 5">Empieza a navegar para revisar nuestros apartados</p>
+        </div>
+    </div>
+</app-side-tool>

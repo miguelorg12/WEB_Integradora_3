@@ -1,1 +1,54 @@
-<p>index works!</p>
+<app-side-tool>
+    <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-full mx-auto">
+        <div class="w-full">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold leading-9 tracking-tight text-violet-950">Sensores</h2>
+                <a [routerLink]="['/sensores/create']" class="flex items-center rounded-md bg-cyan-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <mat-icon class="mr-2">add</mat-icon>Registrar Sensor
+                </a>
+            </div>
+            <div *ngIf="successMessage.message">
+                <p class="text-green-500 font-medium text-sm">{{successMessage.message}}</p>
+            </div>
+            <div *ngIf="sensores.length <= 0">
+                <tr>
+                    <td class="text-red-500 font-medium text-2xl">No hay registros</td>
+                </tr>
+            </div>
+            
+        </div>
+
+        <div class="mt-5 w-full" >
+            <table class="table-auto w-full" *ngIf="sensores.length > 0">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Id</th>
+                        <th class="px-4 py-2">Nombre</th>
+                        <th class="px-4 py-2">Unidad</th>
+                        <th class="px-4 py-2">Estado</th>
+                        <th class="px-4 py-2">Actualizar</th>
+                        <th class="px-4 py-2">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let sensor of sensores">
+                        <td class="border px-2  text-center">{{sensor.id}}</td>
+                        <td class="border px-2  text-center">{{sensor.nombre}}</td>
+                        <td class="border px-2  text-center">{{sensor.unidad}}</td>
+                        <td class="border px-2  text-center">{{sensor.is_active == 1 ? 'Activo' : 'Inactivo'}}</td>
+                        <td class="border px-2  text-center">
+                            <a [routerLink]="['/sensores/edit/', sensor.id]" class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                <mat-icon class="text-fuchsia-500">border_color</mat-icon>
+                            </a>
+                        </td>
+                        <td class="border px-4 py-2 text-center">
+                            <button (click)="delete(sensor.id)" mat-icon-button class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 " aria-label="Example icon-button with heart icon">
+                                <mat-icon class="text-cyan-700 hover:text-fuchsia-500">delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</app-side-tool>

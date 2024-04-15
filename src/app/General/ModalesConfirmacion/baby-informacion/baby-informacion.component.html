@@ -1,0 +1,36 @@
+<div class="flex flex-col p-6 space-y-4 justify-center sm:w-96 sm:m-auto mx-2 mb-5 text-left" [ngClass]="dialogClass">
+    <div class="flex justify-end">
+        <button (click)="dialogRef.close()" class="text-lg font-bold text-gray-800">X</button>
+    </div>
+
+    <h2 class="font-bold text-3xl text-gray-800">Información del Bebé</h2>
+
+    <div class="flex flex-col space-y-2">
+        <p><span class="font-bold text-gray-800">Nombre:</span> {{bebefull.nombre}}</p>
+        <p><span class="font-bold text-gray-800">Edad(Meses):</span> {{bebefull.edad}}</p>
+        <p><span class="font-bold text-gray-800">Edad(Gramos):</span> {{bebefull.peso}}</p>
+        <p><span class="font-bold text-gray-800">Fecha de nacimiento:</span> {{bebefull.fecha_nacimiento}}</p>
+        <p><span class="font-bold text-gray-800">Sexo:</span> {{bebefull.sexo}}</p>
+    </div>
+
+    <h2 class="font-bold text-3xl text-gray-800" *ngIf="contactos.length <= 0">No tiene contactos</h2>
+
+    <div class="flex flex-col space-y-2" *ngIf="contactos.length > 0">
+        <h2 class="font-bold text-3xl text-gray-800">Contactos</h2>
+        <div *ngFor="let contacto of contactos">
+            <p><span class="font-bold text-gray-800">Nombre:</span> {{contacto.nombre}}</p>
+            <p><span class="font-bold text-gray-800">Relación:</span> {{contacto.apellido}}</p>
+            <p><span class="font-bold text-gray-800">Teléfono:</span> {{contacto.telefono}}</p>
+            <p><span class="font-bold text-gray-800">Email:</span> {{contacto.email}}</p>
+        </div>
+    </div>
+
+    <h2 class="font-bold text-3xl text-gray-800" *ngIf="historiales.length <= 0">No tiene historial medico</h2>
+    <div class="flex flex-col space-y-2" *ngIf="historiales.length > 0">
+        <h2 class="font-bold text-3xl text-gray-800">Historial</h2>
+        <div *ngFor="let historial of historiales">
+            <p><span class="font-bold text-gray-800">Fecha:</span> {{historial.diagnostico}}</p>
+            <p><span class="font-bold text-gray-800">Diagnóstico:</span> {{historial.medicamentos}}</p>
+        </div>
+    </div>
+</div>
