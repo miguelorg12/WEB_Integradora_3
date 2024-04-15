@@ -7,6 +7,9 @@ import { IncubadorasService } from '../../Servicios/incubadoras.service';
 import { Incubadora } from '../../Modelos/incubadoras.model';
 import { MatDialog } from '@angular/material/dialog';
 import { BabyInformacionComponent } from '../../General/ModalesConfirmacion/baby-informacion/baby-informacion.component';
+import { SensoresIncubadorasService } from '../../Servicios/sensores-incubadoras.service';
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
 @Component({
   selector: 'app-bebes-incubadoras',
   standalone: true,
@@ -15,7 +18,9 @@ import { BabyInformacionComponent } from '../../General/ModalesConfirmacion/baby
   styleUrl: './bebes-incubadoras.component.css'
 })
 export class BebesIncubadorasComponent implements OnInit {
-  constructor(private incubadorasService: IncubadorasService, public dialog: MatDialog) { }
+  constructor(private incubadorasService: IncubadorasService, public dialog: MatDialog,
+    private sensoresIncubadorasService: SensoresIncubadorasService
+  ) { }
   babyid : any;
   cardGroups = [2]
   incubadoras : Incubadora[] = [];
@@ -30,12 +35,40 @@ export class BebesIncubadorasComponent implements OnInit {
         console.log(error);
       }
     });
+    (window as any).Pusher = Pusher;
+    (window as any).Echo = new Echo({
+      broadcaster: 'pusher',
+      key: 'askjsdak',
+      cluster: 'mt1',
+      wsHost: window.location.hostname,
+      wsPort: 6001,
+      forceTLS: false,
+      disableStatus: true,
+    }); 
+    (window as any).Echo.channel('testing')
+    .listen('.testWebsocket', (data: any) => {
+      console.log(data);
+      console.log('hola');
+      this.getValues();
+    });
+    this.getValues();
+
       
   }
   openDialog(id_bebe: any) {
     this.dialog.open(BabyInformacionComponent, {
       data: {
         id_bebe: id_bebe
+      }
+    });
+  }
+  getValues(){
+    this.sensoresIncubadorasService.getValue().subscribe({
+      next: (response: any) => {
+        console.log(response);
+      },
+      error: (error: any) => {
+        console.log(error);
       }
     });
   }

@@ -97,6 +97,9 @@
                     <div *ngIf="Form.controls['id_incubadora'].errors && Form.controls['id_incubadora'].touched">
                         <p class="text-red-500 font-medium text-sm" *ngIf="Form.controls['id_incubadora'].errors['required']">La incubadora es requerida</p>
                     </div>
+                    <div *ngIf="incubadoras.length <= 0">
+                        <p class="text-red-500 font-medium text-sm">Registre primero una incubadora</p>
+                    </div>
                 </div>
             </div>
             <div *ngIf="succesMessages.message">

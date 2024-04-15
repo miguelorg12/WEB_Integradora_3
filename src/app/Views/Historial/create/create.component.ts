@@ -26,7 +26,7 @@ export class CreateComponent implements AfterContentInit {
     private bebeService: BebesService) { }
   
   ngAfterContentInit(): void {
-    this.bebeService.getBebes().subscribe({
+    this.bebeService.getBebesSnHistorial().subscribe({
       next: (response: any) => {
         console.log(response);
         this.bebes = response.Bebes;

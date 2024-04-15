@@ -26,7 +26,7 @@ export class CreateComponent implements AfterContentInit {
   backendErrors: any = {};
   succesMessages: any = {};
   Form : FormGroup = new FormGroup({
-    id_hospital: new FormControl('', [Validators.required]),
+    id_hospital: new FormControl(''),
     id_estado: new FormControl('', [Validators.required]),
     id_sensores: new FormControl([], [Validators.required]),
   });

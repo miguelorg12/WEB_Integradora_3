@@ -8,7 +8,8 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class RoleGuard implements CanActivate {
-  id_rol : any
+  id_rol : any;
+  rolanterior : any;
   constructor(private router: Router, private usuarioService : UsuarioService,
     private cookie: CookieService
   ) { }
@@ -18,10 +19,11 @@ export class RoleGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.usuarioService.getRole().pipe(
       map((response: any) => {
-        const requiredRoles = next.data['role']; 
+        const requiredRoles = next.data['role'];  
         this.id_rol = this.cookie.get('id_rol');
-        if(!this.id_rol){
-        this.cookie.set('id_rol', response.role.toString(), 1);
+        this.rolanterior = response.role;
+        if (this.id_rol != this.rolanterior || this.id_rol == null) {
+          this.cookie.set('id_rol', response.role.toString(), 1);
         }
         const roleMapping: { [key: number]: string } = {
           1: 'Developer',

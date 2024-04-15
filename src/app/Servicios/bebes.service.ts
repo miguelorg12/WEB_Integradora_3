@@ -19,6 +19,9 @@ export class BebesService {
   getBebeFull(id: number): Observable<Bebe> {
     return this.http.get<Bebe>(`${environment.api_url}/bebes/bebefull/${id}`, { headers: this.headers });
   }
+  getBebesSnHistorial():Observable<Bebe>{
+    return this.http.get<Bebe>(`${environment.api_url}/bebes/bebesnHistorial`, { headers: this.headers });
+  }
   getBebebyId(id: number): Observable<Bebe> {
     return this.http.get<Bebe>(`${environment.api_url}/bebes/oneBebe/${id}`, { headers: this.headers });
   }

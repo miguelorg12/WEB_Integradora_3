@@ -28,7 +28,9 @@ export class SensoresIncubadorasService {
   updateSensorIncubadora(sensorIncubadora: SensorIncubadora): Observable<SensorIncubadora> {
     return this.http.put<SensorIncubadora>(`${environment.api_url}/sensoresIncubadoras/update/${sensorIncubadora.id}`, sensorIncubadora, { headers: this.headers });
   }
-
+  getValue():any{
+    return this.http.get(`${environment.api_url}/values`, { headers: this.headers });
+  }
   deleteSensorIncubadora(id: number): Observable<SensorIncubadora> {
     return this.http.delete<SensorIncubadora>(`${environment.api_url}/sensoresIncubadoras/delete/${id}`, { headers: this.headers });
   }
