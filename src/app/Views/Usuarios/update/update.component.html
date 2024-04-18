@@ -31,6 +31,18 @@
                 </div>
             </div>
             <div>
+                <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Estado</label>
+                <div class="mt-2">
+                    <select formControlName="is_active" name="role" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+                <div *ngIf="updateForm.controls['id_rol'].errors">
+                    <p class="text-red-500 font-medium text-sm" *ngIf="updateForm.controls['id_rol'].errors['required']">El rol es requerido</p>
+                </div>
+            </div>
+            <div>
                 <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Rol</label>
                 <div class="mt-2">
                     <select formControlName="id_rol" name="role" required class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">

@@ -35,6 +35,7 @@ export class UpdateComponent implements AfterContentInit {
     last_name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
     id_rol: new FormControl('', [Validators.required]),
     id_hospital: new FormControl(''),
+    is_active: new FormControl('', [Validators.required])
   });
   ngAfterContentInit(): void {
     this.rolUser = this.cookie.get('id_rol');
@@ -66,7 +67,8 @@ export class UpdateComponent implements AfterContentInit {
           name: this.user.name,
           last_name: this.user.last_name,
           id_rol: this.user.id_rol,
-          id_hospital: this.user.id_hospital
+          id_hospital: this.user.id_hospital,
+          is_active: this.user.is_active
         });
         console.log(this.user);
       },

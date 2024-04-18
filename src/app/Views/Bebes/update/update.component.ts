@@ -41,7 +41,8 @@ export class UpdateComponent implements AfterContentInit {
     });
     this.bebeService.getBebebyId(this.route.snapshot.params['id']).subscribe({
       next: (response: any) => {
-        this.bebe = response.data;
+        console.log(response)
+        this.bebe = response.Bebe;
         this.updateForm.setValue({
           nombre: this.bebe.nombre,
           apellido: this.bebe.apellido,

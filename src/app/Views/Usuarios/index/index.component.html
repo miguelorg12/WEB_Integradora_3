@@ -26,6 +26,7 @@
                         <th class="px-4 py-2">Apellidos</th>
                         <th class="px-4 py-2">Correo</th>
                         <th class="px-4 py-2">Rol</th>
+                        <th class="px-4 py-2">Estado</th>
                         <th class="px-4 py-2">Hospital</th>
                         <th class="px-4 py-2">Actualizar</th>
                         <th class="px-4 py-2">Eliminar</th>
@@ -38,6 +39,7 @@
                         <td class="border px-2  text-center">{{user.last_name}}</td>
                         <td class="border px-2  text-center">{{user.email}}</td>
                         <td class="border px-2  text-center">{{user.rol}}</td>
+                        <td class="border px-2 text-center">{{user.is_active == 1 ? 'Activo' : 'Inactivo'}}</td>
                         <td class="border px-2  text-center">{{user.hospital}}</td>
                         <td class="border px-2  text-center">
                             <a [routerLink]="['/usuarios/edit', user.id]" class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
