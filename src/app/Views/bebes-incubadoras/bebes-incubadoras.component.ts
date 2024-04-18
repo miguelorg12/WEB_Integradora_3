@@ -67,7 +67,7 @@ export class BebesIncubadorasComponent implements OnInit {
     this.sensoresIncubadorasService.getValue().subscribe({
       next: (response: any) => {
         console.log(response);
-        this.values = response;
+        this.values = Object.keys(response).map(key => response[key]);
       },
       error: (error: any) => {
         console.log(error);
