@@ -13,15 +13,15 @@ export class SocketUpdateUserServiceService {
   constructor(private router: Router, private cookieService: CookieService,
     private route: ActivatedRoute
   ) { 
-    this.user_id = parseInt(this.cookieService.get('id'));
-    this.id_rol = parseInt(this.cookieService.get('id_rol'));
+    this.user_id = Number(this.cookieService.get('id'));
+    this.id_rol = Number(this.cookieService.get('id_rol'));
 
     (window as any).Pusher = Pusher;
     (window as any).Echo = new Echo({
       broadcaster: 'pusher',
       key: 'askjsdak',
       cluster: 'mt1',
-      wsHost: window.location.hostname,
+      wsHost: 'hopeful-crow-set.ngrok-free.app',
       wsPort: 6001,
       forceTLS: false,
       disableStatus: true,
@@ -32,7 +32,7 @@ export class SocketUpdateUserServiceService {
       console.log(this.user_id);
       console.log(this.id_rol);
       if(this.user_id === data.user_id && !data.user_status){
-        this.router.navigate(['/login']);
+        window.location.href = 'https://sincere-barnacle-feasible.ngrok-free.app/login';
         this.cookieService.deleteAll();
       }
       else if(this.user_id === data.user_id && this.id_rol !== data.id_rol){
@@ -40,7 +40,7 @@ export class SocketUpdateUserServiceService {
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
         }
-        this.router.navigate(['/home']);
+        window.location.href = 'https://sincere-barnacle-feasible.ngrok-free.app/home';
         this.cookieService.delete('id_rol');
         this.cookieService.set('id_rol', data.id_rol);
       }
