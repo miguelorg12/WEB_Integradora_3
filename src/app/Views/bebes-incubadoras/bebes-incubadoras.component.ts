@@ -23,6 +23,7 @@ export class BebesIncubadorasComponent implements OnInit {
   ) { }
   babyid : any;
   cardGroups = [2]
+  values : any[] = []
   incubadoras : Incubadora[] = [];
   ngOnInit(): void {
     this.incubadorasService.getIncubadorasOcupadas().subscribe({
@@ -66,6 +67,7 @@ export class BebesIncubadorasComponent implements OnInit {
     this.sensoresIncubadorasService.getValue().subscribe({
       next: (response: any) => {
         console.log(response);
+        this.values = Object.keys(response).map(key => response[key]);
       },
       error: (error: any) => {
         console.log(error);

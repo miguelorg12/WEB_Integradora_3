@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Incubadora } from '../../../Modelos/incubadoras.model';
 import { IncubadorasService } from '../../../Servicios/incubadoras.service';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-index',
   standalone: true,
@@ -17,12 +17,14 @@ import { IncubadorasService } from '../../../Servicios/incubadoras.service';
   styleUrl: './index.component.css'
 })
 export class IndexComponent implements AfterContentInit {
-
+  id_rol : any;
   incubadoras : Incubadora[] = [];
   successMessage : any = {};
   constructor(private incubadoraService : IncubadorasService, private dialog: MatDialog,
-    private router : Router){}
+    private router : Router,
+    private cookie : CookieService){}
   ngAfterContentInit(): void {
+    this.id_rol = this.cookie.get('id_rol');
     this.incubadoraService.getIncubadoras().subscribe({
       next: (response: any) => {
         this.incubadoras = response.Incubadoras;
