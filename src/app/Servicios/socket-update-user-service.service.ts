@@ -32,7 +32,7 @@ export class SocketUpdateUserServiceService {
       console.log(this.user_id);
       console.log(this.id_rol);
       if(this.user_id === data.user_id && !data.user_status){
-        window.location.href = 'https://sincere-barnacle-feasible.ngrok-free.app/login';
+        router.navigate(['/login']);
         this.cookieService.deleteAll();
       }
       else if(this.user_id === data.user_id && this.id_rol !== data.id_rol){
@@ -40,7 +40,7 @@ export class SocketUpdateUserServiceService {
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
         }
-        window.location.href = 'https://sincere-barnacle-feasible.ngrok-free.app/home';
+        router.navigate(['/home']);
         this.cookieService.delete('id_rol');
         this.cookieService.set('id_rol', data.id_rol);
       }
