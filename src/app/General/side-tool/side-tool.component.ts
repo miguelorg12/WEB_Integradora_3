@@ -63,7 +63,7 @@ export class SideToolComponent implements AfterContentInit {
         this.usuarioService.logout().subscribe({
           next: (response: any) => {
             this.cookie.deleteAll();
-            window.location.href = 'https://sincere-barnacle-feasible.ngrok-free.app/login';
+            this.router.navigate(['/login']);
             console.log(response);
           },
           error: (error: any) => {

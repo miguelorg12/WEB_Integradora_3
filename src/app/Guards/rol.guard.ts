@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { UsuarioService } from '../Servicios/usuario.service';
 import { CookieService } from 'ngx-cookie-service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,7 +45,8 @@ export class RoleGuard implements CanActivate {
       catchError((error: any) => {
         console.error('Error getting role:', error);
         this.router.navigate(['/bienvenido']);
-        return of(false);
+        // return of(false); // uncomment this line if you want to always deny access when there's an error
+        throw error; // rethrow the error to be handled by the global error handler
       })
     );
   }

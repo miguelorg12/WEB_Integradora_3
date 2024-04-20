@@ -41,7 +41,7 @@ export class BebesIncubadorasComponent implements OnInit {
       broadcaster: 'pusher',
       key: 'askjsdak',
       cluster: 'mt1',
-      wsHost: 'hopeful-crow-set.ngrok-free.app',
+      wsHost: '34.227.197.144',
       wsPort: 6001,
       forceTLS: false,
       disableStatus: true,
