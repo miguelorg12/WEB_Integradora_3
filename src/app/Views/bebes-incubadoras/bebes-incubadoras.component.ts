@@ -8,6 +8,7 @@ import { Incubadora } from '../../Modelos/incubadoras.model';
 import { MatDialog } from '@angular/material/dialog';
 import { BabyInformacionComponent } from '../../General/ModalesConfirmacion/baby-informacion/baby-informacion.component';
 import { SensoresIncubadorasService } from '../../Servicios/sensores-incubadoras.service';
+import { Value } from '../../Modelos/values.model';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 @Component({
@@ -23,7 +24,7 @@ export class BebesIncubadorasComponent implements OnInit {
   ) { }
   babyid : any;
   cardGroups = [2]
-  values : any[] = []
+  values : Value[] = []
   incubadoras : Incubadora[] = [];
   ngOnInit(): void {
     this.incubadorasService.getIncubadorasOcupadas().subscribe({
@@ -64,15 +65,15 @@ export class BebesIncubadorasComponent implements OnInit {
     });
   }
   getValues(){
-    this.sensoresIncubadorasService.getValue().subscribe({
-      next: (response: any) => {
-        console.log(response);
-        this.values = Object.keys(response).map(key => response[key]);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-  }
+  this.sensoresIncubadorasService.getValue().subscribe({
+    next: (response: any) => {
+      console.log(response);
+      this.values = Object.values(response.data);
+    },
+    error: (error: any) => {
+      console.log(error);
+    }
+  });
+}
 
 }

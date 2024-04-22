@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environments';
 import { Observable } from 'rxjs';
 import { Sensor } from '../Modelos/sensores.model';
+import { Value } from '../Modelos/values.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,5 +31,9 @@ export class SensoresService {
 
   deleteSensor(id: number) : Observable<Sensor>{
     return this.http.delete<Sensor>(`${environment.api_url}/sensores/delete/${id}`, {headers: this.headers});
+  }
+
+  getlogvalues(name: string) : Observable<Value>{
+    return this.http.post<Value>(`${environment.api_url}/historial`, { name: name }, {headers: this.headers}); 
   }
 }

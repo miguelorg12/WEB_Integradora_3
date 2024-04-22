@@ -1,52 +1,38 @@
 <app-side-tool>
-  <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-3/4 mx-auto">
+  <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-full mx-auto">
     <div class="w-full">
-      <div class="flex justify-between items-center">
-        <h2 class="text-2xl font-bold leading-9 tracking-tight text-violet-950">Valores de Sensores</h2>
-      </div>
+        <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold leading-9 tracking-tight text-violet-950">Valores</h2>
+            <select [formControl]="sensorControl" class="pl-3 block w-1/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option *ngFor="let sensor of sensores" [value]="sensor.nombre">{{sensor.nombre}}</option>
+            </select>
+        </div>
+        <div *ngIf="values.length <= 0">
+            <tr>
+                <td class="text-red-500 font-medium text-2xl">No hay registros</td>
+            </tr>
+        </div>
+        
     </div>
 
-    <div class="mt-5 w-full">
-      <mat-list>
-        <mat-list-item *ngFor="let value of values" class="sensor-item">
-          <h3 mat-line>Sensor ID: {{ value['sensor_id'] }}</h3>
-          <p mat-line>Valor: {{ value['sensor_value'] }}</p>
-        </mat-list-item>
-      </mat-list>
-    </div>
+    <div class="mt-5 w-full" >
+        <table class="table-auto w-full" *ngIf="values.length > 0">
+            <thead>
+                <tr>
+                    <th class="border px-2  text-center">Nombre</th>
+                    <th class="border px-2  text-center">Unidad</th>
+                    <th class="border px-2  text-center">Valor</th>
 
-    <div class="w-full">
-      <div class="flex justify-between items-center mt-10">
-        <h2 class="text-2xl font-bold leading-9 tracking-tight text-violet-950">Datos de la Incubadora</h2>
-      </div>
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let value of values">
+                    <td class="border px-2  text-center">{{value.name}}</td>
+                    <td class="border px-2  text-center">{{value.unit}}</td>
+                    <td class="border px-2  text-center">{{value.value}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <div class="mt-5 w-full">
-      <mat-card class="incubadora-card">
-        <mat-card-content>
-          <p>ID de la Incubadora: {{ displayedColumns[2] }}</p>
-          <p>Estado: {{ displayedColumns[1] === 'is_active' ? 'Activa' : 'Inactiva' }}</p>
-          <p>Ocupada: {{ displayedColumns[2] === 'is_occupied' ? 'Sí' : 'No' }}</p>
-          <p>Óptimo: {{ displayedColumns[3] === 'optimo' ? 'Sí' : 'No' }}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div class="w-full">
-      <div class="flex justify-between items-center mt-10">
-        <h2 class="text-2xl font-bold leading-9 tracking-tight text-violet-950">Datos del Bebé</h2>
-      </div>
-    </div>
-
-    <div class="mt-5 w-full">
-      <mat-card class="bebe-card">
-        <mat-card-content>
-          <p>ID de la Incubadora: {{ displayedColumns[3] }}</p>
-          <p>Nombre: {{ values[0]['nombre'] }}</p>
-          <p>Apellido: {{ values[0]['apellido'] }}</p>
-          <p>Estado: {{ values[0]['id_estado'] }}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
+</div>
 </app-side-tool>
