@@ -37,15 +37,18 @@ export class CreateComponent implements AfterContentInit {
   
   ngAfterContentInit(): void {
     this.id_rol = this.cookies.get('id_rol');
+    const id_hospital = this.cookies.get('id_hospital'); 
     this.hospitalesService.getHospitales().subscribe({
       next: (response: any) => {
-        this.hospitales = response.Hospitales;
+        const id_hospital = Number(this.cookies.get('id_hospital')); 
+        this.hospitales = response.Hospitales.filter((hospital: Hospital) => hospital.is_active && Number(hospital.id) === id_hospital);
         console.log(this.hospitales);
       },
       error: (error: any) => {
         console.log(error);
       }
     });
+  
     this.sensoresService.getSensores().subscribe({
       next: (response: any) => {
         console.log(response);
@@ -80,28 +83,42 @@ export class CreateComponent implements AfterContentInit {
     control.setValue(this.sensoresSeleccionados);
   }
   }
-  crearIncubadora(){
-  console.log(this.Form.value)
-  if(this.Form.valid && this.sensoresSeleccionados.length > 0){
-    this.incubadorasService.createIncubadora(this.Form.value).subscribe({
-      next: (response: any) => {
-        this.succesMessages.message = 'Incubadora creada con exito';
-        this.backendErrors = '';
-        setTimeout(() => {
-          this.router.navigate(['/incubadoras']);
-          this.succesMessages = '';
-        }, 3000);
-        console.log(response);
-      },
-      error: (error: any) => {
-        this.backendErrors = error.error;
-        this.succesMessages = ''
-        this.backendErrors = { message:"Error al crear incubadora, intente mas tarde"}
-        console.log(error);
+  crearIncubadora() {
+    console.log(this.Form.value);
+    console.log("ID del hospital seleccionado:", this.Form.value.id_hospital); // Agregar esta línea
+    console.log("Sensores seleccionados:", this.sensoresSeleccionados); 
+  
+    if (this.Form.valid && this.sensoresSeleccionados.length > 0) {
+      const hospitalSeleccionado = this.findHospitalById(this.Form.value.id_hospital);
+      if (!hospitalSeleccionado) {
+        this.backendErrors = { message: 'Hospital no encontrado' };
+        return;
       }
-    });
-  } else {
-    this.backendErrors = { message: 'Al menos 1 sensor es requerido' };
+  
+      this.incubadorasService.createIncubadora(this.Form.value).subscribe({
+        next: (response: any) => {
+          this.succesMessages.message = 'Incubadora creada con éxito';
+          this.backendErrors = '';
+          setTimeout(() => {
+            this.router.navigate(['/incubadoras']);
+            this.succesMessages = '';
+          }, 3000);
+          console.log(response);
+        },
+        error: (error: any) => {
+          this.backendErrors = error.error;
+          this.succesMessages = '';
+          this.backendErrors = { message: "Error al crear incubadora, intente más tarde" };
+          console.log(error);
+        }
+      });
+    } else {
+      this.backendErrors = { message: 'Al menos 1 sensor es requerido' };
+    }
   }
-}
+  
+  findHospitalById(id: string): Hospital | undefined {
+    return this.hospitales.find((hospital: Hospital) => Number(hospital.id) === Number(id));
+  }
+  
 }

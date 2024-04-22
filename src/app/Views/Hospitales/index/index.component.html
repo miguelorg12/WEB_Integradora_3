@@ -25,6 +25,7 @@
                         <th class="px-4 py-2">Nombre</th>
                         <th class="px-4 py-2">Direccion</th>
                         <th class="px-4 py-2">Telefono</th>
+                        <th class="px-4 py-2">Estado</th>
                         <th class="px-4 py-2">Actualizar</th>
                         <th class="px-4 py-2">Eliminar</th>
                     </tr>
@@ -35,6 +36,7 @@
                         <td class="border px-2  text-center">{{hospital.nombre}}</td>
                         <td class="border px-2  text-center">{{hospital.direccion}}</td>
                         <td class="border px-2  text-center">{{hospital.telefono}}</td>
+                        <td class="border px-2  text-center">{{hospital.is_active}}</td>
                         <td class="border px-2  text-center">
                             <a [routerLink]="['/hospitales/edit/', hospital.id]" class="example-icon favorite-icon rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <mat-icon class="text-fuchsia-500">border_color</mat-icon>

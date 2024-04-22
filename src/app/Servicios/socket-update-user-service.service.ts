@@ -13,15 +13,15 @@ export class SocketUpdateUserServiceService {
   constructor(private router: Router, private cookieService: CookieService,
     private route: ActivatedRoute
   ) { 
-    this.user_id = parseInt(this.cookieService.get('id'));
-    this.id_rol = parseInt(this.cookieService.get('id_rol'));
+    this.user_id = Number(this.cookieService.get('id'));
+    this.id_rol = Number(this.cookieService.get('id_rol'));
 
     (window as any).Pusher = Pusher;
     (window as any).Echo = new Echo({
       broadcaster: 'pusher',
       key: 'askjsdak',
       cluster: 'mt1',
-      wsHost: window.location.hostname,
+      wsHost: '34.227.197.144',
       wsPort: 6001,
       forceTLS: false,
       disableStatus: true,

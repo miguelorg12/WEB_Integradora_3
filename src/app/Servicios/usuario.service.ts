@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environments';
 import { Usuario } from '../Modelos/usuario.model';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -55,8 +55,13 @@ export class UsuarioService {
     return this.http.delete<Usuario>(`${environment.api_url}/user/delete/${id}`, {headers: this.headers});
   } 
 
-  getRole(): Observable<any>{
-    return this.http.get(`${environment.api_url}/user/getRole`, {headers: this.headers});
+  getRole(): Observable<any> {
+    return this.http.get(`${environment.api_url}/user/getRole`, { headers: this.headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error getting role:', error);
+        return throwError(() => new Error('Error getting role'));
+      })
+    );
   }
 
 }

@@ -44,7 +44,15 @@ export class IndexComponent {
               this.successMessage.message = '';
               this.router.navigate(['/hospitales']);
             }, 3000);
-            this.hospitales = this.hospitales.filter((hospital) => hospital.id !== id);
+            // Llama nuevamente a getHospitales() para actualizar la lista después de la eliminación
+            this.hospitalService.getHospitales().subscribe({
+              next: (response: any) => {
+                this.hospitales = response.Hospitales;
+              },
+              error: (error: any) => {
+                console.log(error);
+              }
+            });
           },
           error: (error: any) => {
             console.log(error);
@@ -53,6 +61,8 @@ export class IndexComponent {
       }
     });
   }
-
-
+  
 }
+
+
+

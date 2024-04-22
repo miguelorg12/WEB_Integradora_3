@@ -39,6 +39,7 @@ constructor(private router: Router,
       this.hospitalService.getHospitalesNtoken().subscribe((response: any) => {
         this.hospitales = response.Hospitales;
         console.log(this.hospitales);
+        console.log(response);
       });
   }
   register() {
