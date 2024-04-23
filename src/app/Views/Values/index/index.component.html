@@ -7,9 +7,14 @@
                 <option *ngFor="let sensor of sensores" [value]="sensor.nombre">{{sensor.nombre}}</option>
             </select>
         </div>
-        <div *ngIf="values.length <= 0">
+        <div *ngIf="values.length <= 0 && !sensorExist">
             <tr>
-                <td class="text-red-500 font-medium text-2xl">No hay registros</td>
+                <td class="text-red-500 font-medium text-2xl">No hay registros, seleccione un sensor</td>
+            </tr>
+        </div>
+        <div *ngIf="values.length <= 0 && sensorExist">
+            <tr>
+                <td class="text-red-500 font-medium text-2xl">No hay registros, seleccione nuevamente un sensor</td>
             </tr>
         </div>
         
@@ -26,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr  *ngFor="let value of values">
+                <tr  *ngFor="let value of values | paginate: { itemsPerPage: 15, currentPage: p }">
                     <td class="border px-2  text-center">{{value.name}}</td>
                     <td class="border px-2  text-center">{{value.unit}}</td>
                     <td class="border px-2  text-center">{{value.value}}</td>
@@ -34,6 +39,7 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls class="mt-2 font-medium" (pageChange)="p = $event" *ngIf="values.length > 0"></pagination-controls>
     </div>
 </div>
 </app-side-tool>

@@ -49,9 +49,8 @@ export class BebesIncubadorasComponent implements OnInit {
     }); 
     (window as any).Echo.channel('testing')
     .listen('.testWebsocket', (data: any) => {
-      console.log(data);
-      console.log('hola');
       this.getValues();
+      console.log(data)
     });
     this.getValues();
 
@@ -75,5 +74,6 @@ export class BebesIncubadorasComponent implements OnInit {
     }
   });
 }
+
 
 }

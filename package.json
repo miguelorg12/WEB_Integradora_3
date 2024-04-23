@@ -24,6 +24,7 @@
     "firebase-functions": "^4.9.0",
     "laravel-echo": "^1.16.1",
     "ngx-cookie-service": "^17.1.0",
+    "ngx-pagination": "^6.0.3",
     "primeng": "^17.12.0",
     "pusher-js": "^8.4.0-rc2",
     "rxjs": "~7.8.0",
