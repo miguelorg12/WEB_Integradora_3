@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
   constructor(private sensoresService : SensoresService){
 
   }
-  displayedColumns: string[] = ['sensor_value', 'sensor_id', 'incubadora_id', 'bebe_id'];
+  
   values : Value[] = []
   sensores : Sensor[] = []
   p : number = 1;
